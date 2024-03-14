@@ -17,11 +17,13 @@
             text-align: center;
         }
         tr:hover{
-            background-color: rgb(160, 199, 233);
+            background-color: rgb(229, 233, 237);
         }
+
     </style>
 </head>
 <body>
+    
     <div class="container table-container">
         <h1 class="mb-4">Transaction Details</h1>
         <% if (transactionData && transactionData.length > 0) { %>
@@ -45,6 +47,7 @@
                             <td><%= transaction.year %></td>
                             <td><%= transaction.groupname %></td>
                             <td><%= new Date(transaction.date).toLocaleString() %></td>
+                            <td><button class="btn btn-primary" onclick="printTransactionDetails('<%= transaction.name %>','<%= transaction.amount %>','<%= transaction.type %>')">Print</button></td>
                         </tr>
                     <% }); %>
                 </tbody>
@@ -53,5 +56,41 @@
             <p>No transactions found.</p>
         <% } %>
     </div>
-</body>
+    
+    <script>
+        function printTransactionDetails(name,amount,type) {
+
+            console.log(name,amount,type);
+
+               const data={
+                       name,
+                       amount,
+                       type
+                       };
+              fetch('/generate_bill', {
+                     method: 'POST',
+                     headers: {
+                    'Content-Type': 'application/json'   
+                    },
+                     body: JSON.stringify(data)  
+                       }).then(response => {
+              if (response.ok) {
+               return response.blob();
+               } else {
+               throw new Error('Failed to generate PDF');
+               }
+               })
+             .then(blob => {
+              const url = URL.createObjectURL(blob);
+             window.open(url, '_blank');
+                                   })
+           .catch(error => {
+             console.error('Error:', error);
+           });
+            }
+    </script>
+    
 </html>
+
+
+
