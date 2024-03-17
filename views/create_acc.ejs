@@ -21,28 +21,62 @@
     align-items:center;
    }
 
-   .heading{
-    width:500px;
-    text-align:center;
-    font-family:'Times New Roman', Times, serif;
-    font-size: 50px;
-    font-weight: bold;
-    color:rgb(182, 208, 54);
-  }
+   .navigation{
+    position:absolute;
+    background-color: #2D3250;
+    height: 300px;
+    width: 250px;
+    border-radius: 10px;
+    z-index: 1;
+    margin-top: 15px;
+    margin-left: 20px;
+    display:none;
+   }
 
-  #home {
-  height: 40px;
-  width:100px;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  background-color: rgb(6, 151, 6);
-  color: aliceblue;
-  font-weight: bold;
-  font-size: 12px;
-  margin-left: 30px;
-  margin-top: 15px;
+   ul{
+    list-style-type: none; 
+    text-align: center;
+    margin-top: 20px;
+    padding:20px;
+   }
+   a{
+    color: white;
+    text-decoration: none;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+   }
+   li {
+     color: white;
+     font-size: 18px;
+     text-decoration: none;
+     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+   }
+   li{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    transition: all .3s ease-in;
+    padding-top: 30px;
+   }
+   li:hover{
+        transform: scale(1.1);
+        cursor: pointer;
+        background-color: #31375a;
+   }
+   a:hover{
+    text-decoration: none;
+    color:rgb(93, 93, 163);
+   }
+
+#logo{
+  margin-left: 40%;
+  margin-top: 10px;
 }
+
+   img{
+    height:45px;
+    width:45px;
+   }
+
         .form-column {
             background-color: #fff;
             border-radius: 10px;
@@ -67,19 +101,26 @@
 <body>
 
 
-    <div class="navbar">
-   
-        <a href="/home" ><button class="menu-button" id="home" >
-          HOME
-      </button></a>  
-
-      <div class="heading">Jai Shree Ram</div>
-
-      <a href="/user_details" ><button class="menu-button" id="home" >
-        HISTORY
-    </button></a>  
-
-</div>
+    <div class="navigation"> 
+        <div class="logo" id="logo"><img src="https://as1.ftcdn.net/v2/jpg/00/69/37/26/1000_F_69372697_LSptpUKLbHwJSeCdBZ2uINqCQkg34oBF.jpg" alt="logo" class="logo1"  onclick="closeNav()"></div>
+        <ul>
+          <li><a href="/group">ADD GROUP</a></li>
+          <li><a href="/issue_budget">ISSUE BUDGET</a></li>
+          <li><a href="/admin_dashboard">ADMIN DASHBOARD</a></li>
+        </ul>
+      </div>
+    
+      <div class="navbar">
+        <div class="nav">
+            <div class="logo"><img src="https://icon-library.com/images/white-menu-icon-png/white-menu-icon-png-18.jpg" alt="logo" onclick="openNav()"></div>
+        </div>
+        
+        <div ><a href="/home">HOME</a></div>
+        <div> <a href="/">ADD USERS</a></div>
+        <div><a href="/user_details">USER DETAILS</a></div>
+        <div><a href="/pending">PENDING STATUS</a></div>
+    
+    </div>
 
 
     <div class="container mt-5">
@@ -192,5 +233,13 @@
     document.getElementById('createAccountForm').reset(); 
   });
   </script>
+  <script>
+    function openNav() {
+         document.querySelector('.navigation').style.display = 'block';
+     }
+     function closeNav() {
+         document.querySelector('.navigation').style.display = 'none';
+     }
+ </script>
 </body>
 </html>

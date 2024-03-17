@@ -7,6 +7,8 @@ module.exports = {
     try {
       const year = req.body.year;
 
+      console.log(req.body);
+
       console.log(year);
 
       const uniqueYears = await budget.distinct("issuedYear");

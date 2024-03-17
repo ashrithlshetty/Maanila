@@ -19,13 +19,13 @@
 
    .navigation{
     position:absolute;
-    background-color: #864AF9;
-    height: 500px;
+    background-color: #2D3250;
+    height: 300px;
     width: 250px;
     border-radius: 10px;
     z-index: 1;
     margin-top: 15px;
-    margin-left: 35px;
+    margin-left: 20px;
     display:none;
    }
 
@@ -35,7 +35,12 @@
     margin-top: 20px;
     padding:20px;
    }
-   li a {
+   a{
+    color: white;
+    text-decoration: none;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+   }
+   li {
      color: white;
      font-size: 18px;
      text-decoration: none;
@@ -51,15 +56,15 @@
    li:hover{
         transform: scale(1.1);
         cursor: pointer;
-        background-color: #7332eb;
+        background-color: #31375a;
    }
    a:hover{
     text-decoration: none;
-    color:rgb(3, 3, 98);
+    color:rgb(93, 93, 163);
    }
 
 #logo{
-  margin-left: 43%;
+  margin-left: 40%;
   margin-top: 10px;
 }
 
@@ -71,11 +76,10 @@
 
   .heading{
     width:500px;
-    text-align:center;
-    font-family:'Times New Roman', Times, serif;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-size: 50px;
     font-weight: bold;
-    color:rgb(182, 208, 54);
+    color:rgb(29, 45, 218);
   }
 
   .btn{
@@ -84,13 +88,26 @@
     border: none;
     cursor: pointer;
     height: 40px;
-    width: 200px;
+    width: 100px;
     margin-left: 20px;
   }
 
   .container-fluid{
-    width:500px;
-    margin-left: 40px;
+    width:100%;
+  }
+  .searchbox{
+width: 200px;
+border:0.5px solid black;
+  }
+
+  ::placeholder {
+  font-weight: 100; 
+}
+
+  #navbarSupportedContent{
+    margin-left: 0px;
+    width: 200px;
+    height: 40px;
   }
 
 .dropdown{
@@ -183,7 +200,7 @@ background-color: rgb(193, 209, 223);
 }
 
 ::-webkit-scrollbar {
-  width: 4px;
+  width: 0px;
 }
 ::-webkit-scrollbar-track {
   background: #efe6e6;
@@ -193,14 +210,10 @@ background-color: rgb(193, 209, 223);
 </head>
 <body>
   <div class="navigation"> 
-    <div class="logo" id="logo"><img src="https://vectorified.com/images/cross-mark-icon-14.png" alt="logo" class="logo1"  onclick="closeNav()"></div>
+    <div class="logo" id="logo"><img src="https://as1.ftcdn.net/v2/jpg/00/69/37/26/1000_F_69372697_LSptpUKLbHwJSeCdBZ2uINqCQkg34oBF.jpg" alt="logo" class="logo1"  onclick="closeNav()"></div>
     <ul>
-      <li><a href="/">ADD USER</a></li>
       <li><a href="/group">ADD GROUP</a></li>
-      <li><a href="/create_acc">CREATE ACCOUNT</a></li>
       <li><a href="/issue_budget">ISSUE BUDGET</a></li>
-      <li><a href="/user_details">USER DETAILS</a></li>
-      <li><a href="/pending">PENDING STATUS</a></li>
       <li><a href="/admin_dashboard">ADMIN DASHBOARD</a></li>
     </ul>
   </div>
@@ -210,15 +223,10 @@ background-color: rgb(193, 209, 223);
         <div class="logo"><img src="https://icon-library.com/images/white-menu-icon-png/white-menu-icon-png-18.jpg" alt="logo" onclick="openNav()"></div>
     </div>
     
-    <div class="heading">Jai Shree Ram</div>
-
-    <div class="dropdown">
-        <div class="form-group">
-            <select class="form-control" id="group" name="group" required>
-                <option value="">Select group name</option>
-            </select>
-        </div>
-      </div>
+    <div ><a href="/">ADD USER</a></div>
+    <div> <a href="/create_acc">CREATE  ACCOUNT</a></div>
+    <div><a href="/user_details">USER DETAILS</a></div>
+    <div><a href="/pending">PENDING STATUS</a></div>
 
 </div>
 
@@ -227,8 +235,16 @@ background-color: rgb(193, 209, 223);
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
     <div class="collapse navbar-collapse" id="navbarSupportedContent">   
-      <input class="form-control me-2" id="searchInput" type="search" placeholder="Search" aria-label="Search">
+      <input class="searchbox" id="searchInput" type="search" placeholder="Search User" aria-label="Search">
       <button class="btn" onclick="searchUser()">Search</button>
+    </div>
+    <div class="heading"> </div>
+    <div class="dropdown">
+      <div class="form-group">
+          <select class="form-control" id="group" name="group" required>
+              <option value="">Select group name</option>
+          </select>
+      </div>
     </div>
   </div>
 </nav>

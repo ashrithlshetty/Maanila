@@ -92,9 +92,6 @@ yearInput.addEventListener('input',  (event) => {
 
   console.log(year);
 
-  const data={
-    year
-  }
   
 
   fetch('/check_issued_year', {
@@ -102,7 +99,7 @@ yearInput.addEventListener('input',  (event) => {
                 headers: {
                     'Content-Type': 'application/json'   
                 },
-               body: JSON.stringify(data)  
+               body: JSON.stringify({year:year})  
             }).then(response => {
     if (response.ok) {
         return response.json(); 

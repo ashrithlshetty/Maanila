@@ -6,6 +6,7 @@ module.exports = {
     res.render("issue_budget");
   },
   issue_budget_post: async (req, res) => {
+    console.log("hello...");
     console.log(req.body);
     try {
       const { year, monthlyAmount, yearlyAmount, description } = req.body;

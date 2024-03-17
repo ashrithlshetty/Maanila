@@ -28,6 +28,11 @@
     outline: none;
 }
 
+.menu{
+    background-color: #0C359E;
+    border: none;
+}
+
 .menu-button:hover {
     background-color: rgb(71, 83, 220);
 }
@@ -66,6 +71,17 @@ th {
     }
   
 
+    #logo{
+  margin-left: 40%;
+  margin-top: 10px;
+}
+
+   img{
+    height:45px;
+    width:45px;
+   }
+
+
   </style>
 </head>
 <body>
@@ -75,6 +91,10 @@ th {
           <a href="/home" ><button class="menu-button" >
             HOME
         </button></a>  
+
+        <button class="menu"  onclick="downloadPage()">
+            <img src="https://icon-library.com/images/icon-download-png/icon-download-png-0.jpg" alt="logo"">    
+        </button>
   
     
     <div class="dropdown">
@@ -147,6 +167,11 @@ if(selectedYear && selectedGroupName){
                
                 const tableBody = document.getElementById('tableBody');
 
+                const rows = tableBody.querySelectorAll('tr');
+                rows.forEach(row => {
+                row.remove(); 
+                 });
+
                 if (data.filteredResult && data.filteredResult.length > 0) {
         function fillTable(data) {
             data.filteredResult.forEach((user) => {
@@ -210,6 +235,13 @@ if(selectedYear && selectedGroupName){
         });
     });
 
+</script>
+
+<script>
+
+function downloadPage() {
+    window.print();
+}
 </script>
 
 </html>
