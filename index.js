@@ -13,68 +13,23 @@ app.set("views", path.join(__dirname, "views"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-const people = require("./routes/peoples");
-app.use("/", people);
+const homeRoutes = require("./routes/homeRoutes");
+app.use("/", homeRoutes);
 
-const home = require("./routes/home");
-app.use("/", home);
+const peopleRoutes = require("./routes/peopleRoutes");
+app.use("/people", peopleRoutes);
 
-const group = require("./routes/group");
-app.use("/", group);
+const paymentRoutes = require("./routes/paymentRoutes");
+app.use("/payment", paymentRoutes);
 
-const groups = require("./routes/groups");
-app.use("/", groups);
+const budgetRoutes = require("./routes/budgetRoutes");
+app.use("/budget", budgetRoutes);
 
-const checkName = require("./routes/check-name");
-app.use("/", checkName);
+const groupRoutes = require("./routes/groupRoutes");
+app.use("/group", groupRoutes);
 
-const checkGroup = require("./routes/check-group");
-app.use("/", checkGroup);
-
-const getUsers = require("./routes/get_users");
-app.use("/", getUsers);
-
-const update_eligibil = require("./routes/update_eligibil");
-app.use("/", update_eligibil);
-
-const create_acc = require("./routes/create_acc");
-app.use("/", create_acc);
-
-const user_pay_in_notin = require("./routes/user_pay_in_notin");
-app.use("/", user_pay_in_notin);
-
-const add_payment = require("./routes/add_payment");
-app.use("/", add_payment);
-
-const payment_update = require("./routes/payment_update");
-app.use("/", payment_update);
-
-const issue_budget = require("./routes/issue_budget");
-app.use("/", issue_budget);
-
-const user_details = require("./routes/user_details");
-app.use("/", user_details);
-
-const calculate = require("./routes/calculate");
-app.use("/", calculate);
-
-const pending = require("./routes/pending");
-app.use("/", pending);
-
-const update_marital = require("./routes/update_marital");
-app.use("/", update_marital);
-
-const find_users = require("./routes/find_users");
-app.use("/", find_users);
-
-const admin_dashboard = require("./routes/admin_dashboard");
-app.use("/", admin_dashboard);
-
-const check_issued_year = require("./routes/check_issued_year");
-app.use("/", check_issued_year);
-
-const transaction = require("./routes/transaction");
-app.use("/", transaction);
+const transactionRoutes = require("./routes/transactionRoutes");
+app.use("/transaction", transactionRoutes);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

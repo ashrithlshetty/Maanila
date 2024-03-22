@@ -1,4 +1,6 @@
 const path = require("path");
+const Payments = require("../models/payment");
+const Peoples = require("../models/peoples");
 const Groups = require("../models/group");
 const budget = require("../models/budget");
 
@@ -42,6 +44,31 @@ module.exports = {
     } catch (error) {
       console.error("Error in check_issued_year:", error);
       res.status(500).json({ error: "Internal server error" });
+    }
+  },
+
+  issue_budget: async (req, res) => {
+    res.render("issue_budget");
+  },
+  issue_budget_post: async (req, res) => {
+    console.log("hello...");
+    console.log(req.body);
+    try {
+      const { year, monthlyAmount, yearlyAmount, description } = req.body;
+
+      const newBudget = new Budget({
+        issuedYear: year,
+        monthlyAmount: parseInt(monthlyAmount),
+        yearlyAmount: parseInt(yearlyAmount),
+        description: description,
+      });
+
+      await newBudget.save();
+
+      res.redirect("/home");
+    } catch (error) {
+      console.error("Error:", error);
+      res.status(500).send("Error issuing budget.");
     }
   },
 };

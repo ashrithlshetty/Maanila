@@ -1,8 +1,8 @@
 const express = require("express");
 const router = express.Router();
 
-const groups = require("../controllers/groups.js");
+const home = require("../controllers/homeController");
 
-router.get("/groups", groups.get_groups);
+router.get("/home", home.get_home);
 
 module.exports = router;
