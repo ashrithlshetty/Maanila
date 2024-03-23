@@ -56,7 +56,7 @@ module.exports = {
     try {
       const { year, monthlyAmount, yearlyAmount, description } = req.body;
 
-      const newBudget = new Budget({
+      const newBudget = new budget({
         issuedYear: year,
         monthlyAmount: parseInt(monthlyAmount),
         yearlyAmount: parseInt(yearlyAmount),

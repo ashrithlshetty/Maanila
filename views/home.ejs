@@ -212,7 +212,7 @@ background-color: rgb(193, 209, 223);
   <div class="navigation"> 
     <div class="logo" id="logo"><img src="https://as1.ftcdn.net/v2/jpg/00/69/37/26/1000_F_69372697_LSptpUKLbHwJSeCdBZ2uINqCQkg34oBF.jpg" alt="logo" class="logo1"  onclick="closeNav()"></div>
     <ul>
-      <li><a href="/group/group">ADD GROUP</a></li>
+      <li><a href="/group/groupForm">ADD GROUP</a></li>
       <li><a href="/budget/issue_budget">ISSUE BUDGET</a></li>
       <li><a href="/people/admin_dashboard">ADMIN DASHBOARD</a></li>
     </ul>
@@ -223,9 +223,9 @@ background-color: rgb(193, 209, 223);
         <div class="logo"><img src="https://icon-library.com/images/white-menu-icon-png/white-menu-icon-png-18.jpg" alt="logo" onclick="openNav()"></div>
     </div>
     
-    <div ><a href="/create_acc">ADD USER</a></div>
+    <div ><a href="/people/peopleForm">ADD USER</a></div>
     <div> <a href="/payment/create_acc">CREATE  ACCOUNT</a></div>
-    <div><a href="/user_details">USER DETAILS</a></div>
+    <div><a href="/people/user_details">USER DETAILS</a></div>
     <div><a href="/payment/pending">PENDING STATUS</a></div>
 
 </div>
@@ -265,7 +265,7 @@ background-color: rgb(193, 209, 223);
    <span id="name"></span>,  <h3> If Doesn't Have an Account Yet? Create One</h3>
     <h4>Check whether user is eligible or not</h4>
     <button onclick="closebtn()" style="position: absolute; bottom: 20px; left: 25%; transform: translateX(-50%); background-color: #4CAF50; color: white; padding: 10px 20px; border: none; cursor: pointer; border-radius: 5px;">Close</button>
-    <a href="/create_acc">
+    <a href="/payment/create_acc">
       <button style="position: absolute; bottom: 20px; left: 75%; transform: translateX(-50%); background-color: #4CAF50; color: white; padding: 10px 20px; border: none; cursor: pointer; border-radius: 5px;">Create Account</button>
     </a>
   </div>
@@ -279,7 +279,7 @@ background-color: rgb(193, 209, 223);
   <div style="position: absolute; top: 50%; left: 50%; width: 60%; height: 70%; transform: translate(-50%, -50%); background-color: white; padding: 20px;border-radius: 20px;">
       <div class="container">
           <h1 class="text-center mb-4">Payment Form</h1>
-          <form id="paymentForm"  action="/payment_update" method="post" class="row">
+          <form id="paymentForm"  action="/payment/payment_update" method="post" class="row">
               <div class="col-sm-6">
                   <div class="form-group">
                       <label for="username">Username:</label>
@@ -357,7 +357,7 @@ document.getElementById("paymentForm").addEventListener("submit", function(event
     console.log(amountValue);
     console.log(typeof amountValue);
    
-    fetch("/payment_update", {
+    fetch("/payment/payment_update", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -407,7 +407,7 @@ function printBill(name , amount , type){
   amount,
   type
  };
-    fetch('/generate_bill', {
+    fetch('/payment/generate_bill', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'   
@@ -438,7 +438,7 @@ function searchUser() {
  
   console.log(search);
 
-  fetch('/find_users', {
+  fetch('/people/find_users', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -512,7 +512,7 @@ function acceptPayment(username, groupname, mothername) {
   console.log("clicked");
 
 
-  fetch('/add_payment', {
+  fetch('/payment/add_payment', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -577,7 +577,7 @@ function acceptPayment(username, groupname, mothername) {
     
     $(document).ready(function() {
         $.ajax({
-            url: "/groups", 
+            url: "/group/groups", 
             type: "GET",
             success: function(groups) {
                 console.log(groups);
@@ -609,7 +609,7 @@ function acceptPayment(username, groupname, mothername) {
 
     if (selectedGroupName) {
       try {
-        const response = await fetch(`/get_users?name=${selectedGroupName}`); 
+        const response = await fetch(`/people/get_users?name=${selectedGroupName}`); 
         const ResponseData = await response.json();
         console.log(ResponseData);
 
@@ -691,7 +691,7 @@ detailsDiv.innerHTML = `
       <input type="text" class="${user._Id}" value="${user.motherName}">
 
       <button id="${user._id}" class="acceptPaymentBtn ${user._id}" onclick="acceptPayment('${user.name}','${user.group}','${user.motherName}')">Add Payment</button>
-      <a href="/user_details" class="history"> History</a>
+      <a href="/people/user_details" class="history"> History</a>
     </div>
   `;
 });
@@ -732,7 +732,7 @@ async function sendSelectedValue(element,userId) {
         body: JSON.stringify(data)
     };
 
-    fetch('update_eligibil', fetchOptions)
+    fetch('/people/update_eligibil', fetchOptions)
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
@@ -773,7 +773,7 @@ async function sendSelectedValue(element,userId) {
       };
   
      
-      fetch('update_marital', fetchOptions)
+      fetch('/people/update_marital', fetchOptions)
           .then(response => {
               if (!response.ok) {
                   throw new Error('Network response was not ok');

@@ -112,9 +112,9 @@
   <div class="navigation"> 
     <div class="logo" id="logo"><img src="https://as1.ftcdn.net/v2/jpg/00/69/37/26/1000_F_69372697_LSptpUKLbHwJSeCdBZ2uINqCQkg34oBF.jpg" alt="logo" class="logo1"  onclick="closeNav()"></div>
     <ul>
-      <li><a href="/group">ADD GROUP</a></li>
-      <li><a href="/issue_budget">ISSUE BUDGET</a></li>
-      <li><a href="/admin_dashboard">ADMIN DASHBOARD</a></li>
+      <li><a href="/group/groupForm">ADD GROUP</a></li>
+      <li><a href="/budget/issue_budget">ISSUE BUDGET</a></li>
+      <li><a href="/people/admin_dashboard">ADMIN DASHBOARD</a></li>
     </ul>
   </div>
 
@@ -124,16 +124,16 @@
     </div>
     
     <div ><a href="/home">HOME</a></div>
-    <div> <a href="/create_acc">CREATE  ACCOUNT</a></div>
-    <div><a href="/user_details">USER DETAILS</a></div>
-    <div><a href="/pending">PENDING STATUS</a></div>
+    <div> <a href="/payment/create_acc">CREATE  ACCOUNT</a></div>
+    <div><a href="/people/user_details">USER DETAILS</a></div>
+    <div><a href="/payment/pending">PENDING STATUS</a></div>
 
 </div>
 
 
   <div class="container">
     <h2>User Register Form</h2>
-    <form action="/peopleForm" method="post" id="user-form">
+    <form action="/people/peopleForm" method="post" id="user-form">
         <div class="form-group">
             <label for="name">Name:</label>
             <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name" required>
@@ -194,7 +194,7 @@
 
       console.log("ready!");
         $.ajax({
-            url: "/groups", 
+            url: "/group/groups", 
             type: "GET",
             success: function(groups) {
                 console.log(groups);
@@ -219,7 +219,7 @@
         const name = this.value;
 
         $.ajax({
-            url: '/check-name', 
+            url: '/people/check-name', 
             method: 'POST', 
             data: { name: name }, 
             success: function(response) {

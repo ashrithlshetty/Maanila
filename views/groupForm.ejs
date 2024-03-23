@@ -120,9 +120,9 @@
   <div class="navigation"> 
     <div class="logo" id="logo"><img src="https://as1.ftcdn.net/v2/jpg/00/69/37/26/1000_F_69372697_LSptpUKLbHwJSeCdBZ2uINqCQkg34oBF.jpg" alt="logo" class="logo1"  onclick="closeNav()"></div>
     <ul>
-      <li><a href="/group">ADD GROUP</a></li>
-      <li><a href="/issue_budget">ISSUE BUDGET</a></li>
-      <li><a href="/admin_dashboard">ADMIN DASHBOARD</a></li>
+      <li><a href="/group/groupForm">ADD GROUP</a></li>
+      <li><a href="/budget/issue_budget">ISSUE BUDGET</a></li>
+      <li><a href="/people/admin_dashboard">ADMIN DASHBOARD</a></li>
     </ul>
   </div>
 
@@ -132,14 +132,14 @@
     </div>
     
     <div ><a href="/home">HOME</a></div>
-    <div> <a href="/">ADD USERS</a></div>
-    <div><a href="/user_details">USER DETAILS</a></div>
-    <div><a href="/pending">PENDING STATUS</a></div>
+    <div> <a href="/people/peopleForm">ADD USERS</a></div>
+    <div><a href="/people/user_details">USER DETAILS</a></div>
+    <div><a href="/payment/pending">PENDING STATUS</a></div>
 
 </div>
   <div class="container">
-    <h2 class="text-center mb-4">Information Form</h2>
-    <form action="/group" method="post" id="groupForm">
+    <h2 class="text-center mb-4">GROUP FORM</h2>
+    <form action="/group/groupForm" method="post" id="groupForm">
 
         <div class="form-group">
             <label for="name">Name:</label>
@@ -163,8 +163,10 @@
     document.getElementById('name').addEventListener('input', function() {
         const name = this.value;
 
+       console.log(name);
+
         $.ajax({
-            url: '/check-group', 
+            url: '/group/checkGroup', 
             method: 'POST', 
             data: { name: name }, 
             success: function(response) {

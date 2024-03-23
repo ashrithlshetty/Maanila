@@ -159,7 +159,7 @@
 
 
         if (selectedYear && selectedGroupName) {
-            fetch('/pending', {
+            fetch('/payment/pending', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -213,7 +213,7 @@
 
     $(document).ready(function () {
         $.ajax({
-            url: "/groups",
+            url: "/group/groups",
             type: "GET",
             success: function (groups) {
                 console.log(groups);

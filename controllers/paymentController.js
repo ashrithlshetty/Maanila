@@ -2,13 +2,19 @@ const path = require("path");
 const Payments = require("../models/payment");
 const Peoples = require("../models/peoples");
 const Groups = require("../models/group");
+const budget = require("../models/budget");
+const Transaction = require("../models/transaction");
+
+const fs = require("fs");
+const ejs = require("ejs");
+const pdf = require("html-pdf");
 
 module.exports = {
   add_payment: async (req, res) => {
     const username = req.body.name;
     console.log(username);
 
-    const uniqueYears = await Budget.distinct("issuedYear");
+    const uniqueYears = await budget.distinct("issuedYear");
     console.log(uniqueYears);
 
     const userData = await Peoples.findOne({ name: username });
@@ -133,7 +139,7 @@ module.exports = {
       });
 
       await newAccount.save();
-      res.redirect("/create_acc");
+      res.redirect("/payment/create_acc");
     } catch (err) {
       console.error(err);
       res.status(500).send("Server error");
@@ -144,7 +150,7 @@ module.exports = {
     const { username, paymentType, year, amount } = req.body;
     console.log(username, paymentType, year, amount);
 
-    const currentYear = await Budget.findOne({ issuedYear: year });
+    const currentYear = await budget.findOne({ issuedYear: year });
 
     const issuedMonthlyAmt = currentYear.monthlyAmount;
     const issuedYearlyAmt = currentYear.yearlyAmount;
@@ -439,7 +445,7 @@ module.exports = {
     console.log(selectedYear);
     console.log(selectedGroupName);
 
-    const groupsData = await Budget.findOne({ issuedYear: selectedYear });
+    const groupsData = await budget.findOne({ issuedYear: selectedYear });
 
     const monthlyIssuedAmt = groupsData.monthlyAmount;
     const yearlyIssuedAmt = groupsData.yearlyAmount;
@@ -581,6 +587,52 @@ module.exports = {
       res.json({ exists: true, userData: userData }); // Send user data along with exists status
     } else {
       res.json({ exists: false });
+    }
+  },
+  generate_bill: async (req, res) => {
+    try {
+      const { name, amount, type } = req.body;
+
+      console.log(name, amount);
+
+      let user = await Peoples.findOne({ name: name });
+
+      if (!user) throw Error("User not found");
+
+      const ejsFilePath = path.join(__dirname, "..", "views", "bill.ejs");
+
+      const date = new Date();
+      const formattedDate = date.toLocaleDateString("en-US", {
+        day: "numeric",
+        month: "numeric",
+        year: "numeric",
+      });
+
+      // Render EJS template to HTML
+      const html = await ejs.renderFile(ejsFilePath, {
+        user: user,
+        amount: amount,
+        date: formattedDate,
+        type: type,
+      });
+
+      // Create PDF from HTML content
+      pdf.create(html).toBuffer((err, buffer) => {
+        if (err) {
+          console.log(err);
+          return res.status(500).send("Error generating PDF");
+        }
+
+        // Set response headers to indicate PDF content
+        res.setHeader("Content-Type", "application/pdf");
+        res.setHeader("Content-Disposition", "inline; filename=bill.pdf");
+
+        // Stream PDF buffer back to the client
+        res.send(buffer);
+      });
+    } catch (error) {
+      console.log(error);
+      res.sendStatus(404);
     }
   },
 };

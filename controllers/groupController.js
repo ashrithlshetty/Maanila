@@ -2,14 +2,15 @@ const path = require("path");
 const Payments = require("../models/payment");
 const Peoples = require("../models/peoples");
 const Groups = require("../models/group");
+const budget = require("../models/budget");
 
 module.exports = {
-  get_group: async (req, res) => {
+  get_group_form: async (req, res) => {
     console.log("groups");
     res.render("groupForm");
   },
 
-  post_group: async (req, res) => {
+  post_group_form: async (req, res) => {
     const { name, head, place } = req.body;
     console.log(name, head, place);
 
@@ -48,7 +49,7 @@ module.exports = {
   get_groups: async (req, res) => {
     const groupsData = await Groups.find({});
 
-    const uniqueYears = await Budget.distinct("issuedYear");
+    const uniqueYears = await budget.distinct("issuedYear");
     console.log(uniqueYears);
 
     const formattedGroups = groupsData.map((group) => ({
