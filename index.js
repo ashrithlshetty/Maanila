@@ -1,7 +1,10 @@
 const express = require("express");
 const app = express();
 const path = require("path");
+const logger = require("./logger");
 var bodyParser = require("body-parser");
+const cookieParser = require("cookie-parser");
+require("dotenv").config();
 
 const { connectMongoDB } = require("./connection");
 const mongoURI = "mongodb://127.0.0.1:27017/mydb1";
@@ -11,7 +14,8 @@ app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
+app.use(express.urlencoded({ extended: true })); //used in middlewares
 
 const homeRoutes = require("./routes/homeRoutes");
 app.use("/", homeRoutes);
@@ -34,4 +38,5 @@ app.use("/transaction", transactionRoutes);
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
+  logger.info(`Server is running on port ${PORT}`);
 });

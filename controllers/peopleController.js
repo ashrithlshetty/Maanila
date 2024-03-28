@@ -3,10 +3,15 @@ const excelJS = require("exceljs");
 const Payments = require("../models/payment");
 const Peoples = require("../models/peoples");
 const Groups = require("../models/group");
+const { setuser } = require("../service/auth");
+const logger = require("../logger");
 
 module.exports = {
   get_people_form: async (req, res) => {
-    console.log("peoples");
+    // console.log(
+    //   "This is the user object obtained from the jwt token",
+    //   req.user
+    // );
     res.render("pplform");
   },
 
@@ -45,7 +50,7 @@ module.exports = {
       await newPerson.save();
       res.redirect("/home");
     } catch (err) {
-      console.error(err);
+      logger.error("Events Error: Unauthenticated user", err);
       res.status(500).send("Server error");
     }
   },
@@ -96,6 +101,7 @@ module.exports = {
       res.send(responseData);
     } catch (error) {
       console.error("Error fetching users:", error);
+      logger.error("Error fetching users:", error);
       res.status(500).json({ error: "Server error" });
     }
   },
@@ -164,9 +170,17 @@ module.exports = {
       res.status(500).send("Internal server error");
     }
   },
+
   user_details: async (req, res) => {
+    // const payload = {
+    //   name: "manish",
+    //   exp: Math.floor(Date.now() / 1000) + 60, // Set expiration time to 1 minute from now
+    // };
+    // const token = setuser(payload);
+    // res.cookie("tokenname", token);
     res.render("user_details");
   },
+
   download: async (req, res) => {
     const workbook = new excelJS.Workbook();
     const worksheet = workbook.addWorksheet("Sheet 1");

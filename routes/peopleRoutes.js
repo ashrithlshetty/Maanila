@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 const peoples = require("../controllers/peopleController");
+// const { authenticatedUser } = require("../middlewares/auth");
 
 router.get("/peopleForm", peoples.get_people_form);
 router.post("/peopleForm", peoples.post_people_form);
