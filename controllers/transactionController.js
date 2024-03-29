@@ -17,6 +17,8 @@ module.exports = {
     try {
       const user = await Payments.findOne({ name: req.body.name });
 
+      console.log(user);
+
       const donation = user.donation;
 
       const monthly = user.monthly_pay[req.body.year];
