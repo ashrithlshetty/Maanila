@@ -7,6 +7,7 @@
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
   <style>
     body {
+
       background-color: #f8f9fa;
       padding: 50px;
     }
@@ -74,14 +75,20 @@
       const name = document.getElementById('name').value;
       const year = document.getElementById('year').value;
       
-      fetch('/delete_transaction', {
+      fetch('/transaction/delete_transaction', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'Accept': '/*',
         },
         body: JSON.stringify({ name, year })
       })
-      .then(response => response.json())
+      .then((response) => {
+        const contentType = response.headers.get('content-type');
+
+        if (contentType && contentType.includes('application/json'))
+            {
+      return response.json()
       .then(data => {
         if (data) {
           const transactionData = document.getElementById('transactionData');
@@ -102,7 +109,13 @@
                          'Yearly';
             transactionData.innerHTML += `<tr><td>${type}</td><td>${localTime}</td><td>${dateParts[2].split('T')[1].slice(0, -1)}</td><td>${transaction.amount}</td></tr>`;
           });
-        } else {
+       } 
+      });
+    } 
+    else if (response.redirected) {
+        window.location.href = response.url;
+    }
+    else {
           console.log('No data received from the server');
         }
       })

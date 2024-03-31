@@ -1,6 +1,7 @@
 const path = require("path");
 const Groups = require("../models/group");
 const Transaction = require("../models/transaction");
+const Payments = require("../models/payment");
 
 module.exports = {
   transaction: async (req, res) => {
@@ -16,11 +17,14 @@ module.exports = {
 
     try {
       const user = await Payments.findOne({ name: req.body.name });
-
       console.log(user);
 
-      const donation = user.donation;
+      if (!user) {
+        res.redirect("/home");
+        return;
+      }
 
+      const donation = user.donation;
       const monthly = user.monthly_pay[req.body.year];
       const yearly = user.yearly_pay[req.body.year];
 

@@ -5,10 +5,11 @@ const logger = require("./logger");
 var bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 require("dotenv").config();
+const url = require("url");
 
 const { connectMongoDB } = require("./connection");
-// const mongoURI = "mongodb://127.0.0.1:27017/mydb1";
-const mongoURI = process.env.MONGODB_URL;
+const mongoURI = "mongodb://127.0.0.1:27017/mydb1";
+// const mongoURI = process.env.MONGODB_URL;
 connectMongoDB(mongoURI);
 
 app.set("view engine", "ejs");
@@ -30,6 +31,13 @@ app.use(cookieParser());
 app.use(express.urlencoded({ extended: true })); //used in middlewares
 
 // app.use(dummy);
+
+app.use((req, res, next) => {
+  const { query } = url.parse(req.url, true);
+  req.query = query;
+  req.requestTime = new Date();
+  next();
+});
 
 app.use("/", homeRoutes);
 app.use("/people", peopleRoutes);
