@@ -5,11 +5,11 @@ const Peoples = require("../models/peoples");
 const Groups = require("../models/group");
 
 module.exports = {
-  get_home: async (req, res) => {
+  get_home: (req, res) => {
     res.render("home");
   },
 
-  get_cn: async (req, res) => {
+  get_cn: (req, res) => {
     res.sendFile(path.join(__dirname, "..", "public", "html", "cn.html"));
   },
 };

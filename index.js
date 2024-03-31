@@ -13,27 +13,39 @@ connectMongoDB(mongoURI);
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
+const homeRoutes = require("./routes/homeRoutes");
+const peopleRoutes = require("./routes/peopleRoutes");
+const paymentRoutes = require("./routes/paymentRoutes");
+const budgetRoutes = require("./routes/budgetRoutes");
+const groupRoutes = require("./routes/groupRoutes");
+const transactionRoutes = require("./routes/transactionRoutes");
+const CustomError = require("./Utils/CustomError");
+const globalErrorHandler = require("./controllers/errorController");
+
+// const { dummy } = require("./middlewares/dummyMiddleware");
+
 app.use(express.json());
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: true })); //used in middlewares
 
-const homeRoutes = require("./routes/homeRoutes");
+// app.use(dummy);
+
 app.use("/", homeRoutes);
-
-const peopleRoutes = require("./routes/peopleRoutes");
 app.use("/people", peopleRoutes);
-
-const paymentRoutes = require("./routes/paymentRoutes");
 app.use("/payment", paymentRoutes);
-
-const budgetRoutes = require("./routes/budgetRoutes");
 app.use("/budget", budgetRoutes);
-
-const groupRoutes = require("./routes/groupRoutes");
 app.use("/group", groupRoutes);
-
-const transactionRoutes = require("./routes/transactionRoutes");
 app.use("/transaction", transactionRoutes);
+
+app.all("*", (req, res, next) => {
+  const err = new CustomError(
+    `The path you requested is not found - ${req.originalUrl}`,
+    404
+  );
+  next(err);
+});
+
+app.use(globalErrorHandler);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

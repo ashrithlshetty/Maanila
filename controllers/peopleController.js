@@ -219,7 +219,7 @@ module.exports = {
       });
   },
 
-  admin_dashboard: async (req, res) => {
+  admin_dashboard: (req, res) => {
     res.render("admin_dashboard");
   },
 };
