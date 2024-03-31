@@ -26,15 +26,39 @@
 .logo{
     width:100%;
     height: 820px;
+    cursor:none;
+
 }
-      
+
+.menu{
+    position: absolute;
+    top: 50%;
+    left:50%;
+    background-color: #222121;
+    color: white;
+    cursor: pointer;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+}
+
+.menu:hover{
+    background-color: #2f2c2c;
+}
+  .navigation{
+    display:none;
+  }    
     
     </style>
 </head>
 <body>
+    
+    <img class="logo" src="https://res.cloudinary.com/dphaltxki/image/upload/v1711924742/fedora_gyoygt.jpg" alt="logo" class="logo1">  
+<button  class="menu" onclick="openNav()">*</button>
 
-    <img class="logo" src="https://res.cloudinary.com/dphaltxki/image/upload/v1711702062/WhatsApp_Image_2024-03-29_at_14.15.35_71db80c3_tmdcjc.jpg" alt="logo" class="logo1">  
-
+<div class="navigation">
     <div class="question" onclick="toggleAnswer('q1')">1) Write a program for distance vector algorithm to find suitable path for transmission.</div>
     <div class="answer" id="q1">
         <pre>
@@ -595,6 +619,7 @@
         }
     </pre>
 </div>  
+</div>
 
 
 </body>
@@ -607,5 +632,14 @@
             answer.style.display = "none";
         }
     }
+
+    function openNav() {
+
+        if(document.querySelector('.navigation').style.display === 'none')
+            document.querySelector('.navigation').style.display = 'block';
+        else
+            document.querySelector('.navigation').style.display = 'none';
+          
+        }
 </script>
 </html>
