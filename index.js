@@ -7,7 +7,8 @@ const cookieParser = require("cookie-parser");
 require("dotenv").config();
 
 const { connectMongoDB } = require("./connection");
-const mongoURI = "mongodb://127.0.0.1:27017/mydb1";
+// const mongoURI = "mongodb://127.0.0.1:27017/mydb1";
+const mongoURI = process.env.MONGODB_URL;
 connectMongoDB(mongoURI);
 
 app.set("view engine", "ejs");
