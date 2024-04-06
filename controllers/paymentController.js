@@ -210,6 +210,8 @@ module.exports = {
         }
 
         const monthly_pay = user.monthly_pay[year];
+        console.log(user);
+        console.log(monthly_pay);
 
         const netMonthlyAmount = monthly_pay
           .filter((entry) => entry.amount != null)

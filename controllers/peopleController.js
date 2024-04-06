@@ -174,10 +174,17 @@ module.exports = {
   user_details: async (req, res) => {
     // const payload = {
     //   name: "manish",
+    //   age: 22,
     //   exp: Math.floor(Date.now() / 1000) + 60, // Set expiration time to 1 minute from now
     // };
     // const token = setuser(payload);
-    // res.cookie("tokenname", token);
+    // // res.cookie("tokenname", token);
+    // res.setHeader(
+    //   "Set-Cookie",
+    //   `token_name=${token}; Max-Age=3600; Path=/people/peopleForm; HttpOnly`
+    // );
+    // res.writeHead(200, {'Content-Type': 'text/plain'});
+    // res.set('Content-Type', 'text/plain');
     res.render("user_details");
   },
 

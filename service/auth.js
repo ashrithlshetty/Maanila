@@ -5,7 +5,6 @@ const TOKEN_SECRET = process.env.TOKEN_SECRET;
 
 function setuser(payload) {
   console.log(payload);
-
   return jwt.sign(payload, TOKEN_SECRET);
 }
 
