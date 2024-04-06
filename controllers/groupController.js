@@ -14,7 +14,7 @@ module.exports = {
     const { name, head, place } = req.body;
     const newPerson = new Groups({ name, head, place });
     await newPerson.save();
-    res.render("home");
+    res.redirect("/group/groupForm");
   }),
 
   get_group: AsyncErrorHandler(async (req, res) => {
