@@ -57,7 +57,7 @@ module.exports = {
 
   find_users: async (req, res) => {
     const search = req.body.name;
-    console.log(search);
+    console.log(typeof search);
 
     const peopleData = await Peoples.find({
       name: { $regex: search, $options: "i" },

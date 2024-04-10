@@ -87,12 +87,10 @@
 const yearInput = document.getElementById('year');
 
 yearInput.addEventListener('input',  (event) => {
+  
   const year = event.target.value;
    
-
   console.log(year);
-
-  
 
   fetch('/budget/check_issued_year', {
                 method: 'POST',
@@ -119,8 +117,6 @@ yearInput.addEventListener('input',  (event) => {
 .catch(error => {
     console.error('Error:', error);
 });
-
-  
   
 });
 
