@@ -30,7 +30,7 @@
         }
 
         .child2{
-        margin-top:-2vh;
+            margin-top:-2vh;
             display:flex;
             justify-content: space-around;
             align-items: center;
@@ -75,7 +75,6 @@
             list-style: none;
             display:flex;
             justify-content: space-around;
-            align-items: center;
             cursor: pointer;
         }
 
@@ -85,10 +84,28 @@
         }
 
         .child31{
-          width:30vw;
+          width:40vw;
           /* background-color: #f2f2f2; */
           background-color:white;
+          display:flex;
+          justify-content: space-around;
+        }
 
+        .child311{
+            align-items: center;
+            width: 100%;
+            height: fit-content;
+            padding: 1vw;
+            display:flex;
+            justify-content: space-between; 
+        }
+
+        #years{
+            width: 10vw;
+            height: 3vw;
+            border-radius: 0.5vw;
+            border: 0.1vw solid #000000;
+            padding: 0.5vw;
         }
         .child32{
           width:50vw;
@@ -184,25 +201,44 @@
                 <div class="logo"></div>
                 <h1><%= data.count %></h1>
                 <h2>Groups</h2>
-                <p>Total no of groups</p>
+                <!-- <p>Total no of groups</p> -->
             </div>
 
             <div class="child 22"> <div class="logo"></div>
             <h1><%= data.members %></h1>
             <h2>Members</h2>
-            <p>Total no of members</p></div>
+            <!-- <p>Total no of members</p> -->
+           </div>
             <div class="child 23">  <div class="logo"></div>
             <h1><%= data.netAmount %></h1>
             <h2>Net Amount</h2>
-            <p>Current Year Collection</p></div>
+            <!-- <p>Current Year Collection</p> -->
+           </div>
             <div class="child 24"> <div class="logo"></div>
             <h1>20</h1>
             <h2>Dummy</h2>
-            <p>Total no of Data</p></div>
+            <!-- <p>Total no of Data</p> -->
+           </div>
          </div>
 
             <div class="child3">  
-                   <div class="child31"></div>
+                   <div class="child31">
+
+
+                    <div class="child311">
+                       <div class="child3111">
+                           <h2>Budget Issued</h2>
+                       </div>
+
+                       <div class="child3112"> <select id="years">
+                        <option value="2024">2024</option>
+                        <option value="orange">Orange</option>
+                        <option value="banana">Banana</option>
+                        <option value="mango">Mango</option>
+                        </select></div>
+                    </div>
+
+                   </div>
                    <div class="child32">
                         <div class="child321">
                             <div class="child3211">
@@ -222,19 +258,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                               
-                                    <!-- <tr>
-                                      <td>1</td>
-                                      <td>John</td>
-                                      <td>Smith</td>
-                                      <td>20</td>
-                                      <td><svg width="2.5vw" height="2.5vw" viewBox="0 0 27 27" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <circle cx="13.5" cy="13.5" r="13.5" fill="#7DC544"/>
-                                        <path d="M18.9799 10.7603L18.4679 12.7589H9L9.52209 10.7603H18.9799ZM14.1305 22L9.29116 16.1174L9.28112 14.3558H11.6406C12.1894 14.3558 12.6412 14.2459 12.996 14.0261C13.3507 13.8063 13.6151 13.511 13.7892 13.1401C13.9632 12.7624 14.0502 12.3434 14.0502 11.8832C14.0502 11.4025 13.9699 10.9766 13.8092 10.6058C13.6486 10.2349 13.3909 9.94643 13.0361 9.74038C12.6814 9.52747 12.2095 9.42102 11.6205 9.42102H9.01004L9.60241 7H11.6205C12.8253 7 13.8293 7.18544 14.6325 7.55632C15.4357 7.9272 16.0382 8.46291 16.4398 9.16346C16.8414 9.85714 17.0422 10.6985 17.0422 11.6875C17.0422 12.5529 16.9083 13.3118 16.6406 13.9643C16.3728 14.6168 15.9478 15.1559 15.3655 15.5817C14.7831 16.0007 14.0167 16.296 13.0663 16.4677L17.4237 21.8558V22H14.1305ZM19 7L18.4779 8.98832H10.6365L11.1586 7H19Z" fill="white"/>
-                                        </svg>
-                                        
-                                        </td>
-                                    </tr>  -->
+
                               <%  data.userArr.forEach(user => {  %>
                                     <tr>
                                         <td><%= user.groupname %></td>
