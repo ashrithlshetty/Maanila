@@ -22,8 +22,10 @@ const paymentRoutes = require("./routes/paymentRoutes");
 const budgetRoutes = require("./routes/budgetRoutes");
 const groupRoutes = require("./routes/groupRoutes");
 const transactionRoutes = require("./routes/transactionRoutes");
+const stores = require("./routes/storeRoutes");
 const CustomError = require("./Utils/CustomError");
 const globalErrorHandler = require("./controllers/errorController");
+
 
 // const { dummy } = require("./middlewares/dummyMiddleware");
 
@@ -46,6 +48,7 @@ app.use("/payment", paymentRoutes);
 app.use("/budget", budgetRoutes);
 app.use("/group", groupRoutes);
 app.use("/transaction", transactionRoutes);
+app.use("/store", stores);
 
 app.all("*", (req, res, next) => {
   const err = new CustomError(

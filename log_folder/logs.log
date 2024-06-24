@@ -1,0 +1,90 @@
+{
+  message: 'Server is running on port 3000',
+  level: 'info',
+  label: 'winston custom format',
+  timestamp: 'Jun-24-2024 19:36:45'
+}
+{
+  message: 'Server is running on port 3000',
+  level: 'info',
+  label: 'winston custom format',
+  timestamp: 'Jun-24-2024 19:38:44'
+}
+{
+  message: 'Server is running on port 3000',
+  level: 'info',
+  label: 'winston custom format',
+  timestamp: 'Jun-24-2024 20:50:40'
+}
+{
+  message: 'Server is running on port 3000',
+  level: 'info',
+  label: 'winston custom format',
+  timestamp: 'Jun-24-2024 20:51:19'
+}
+{
+  message: 'Server is running on port 3000',
+  level: 'info',
+  label: 'winston custom format',
+  timestamp: 'Jun-24-2024 20:52:11'
+}
+{
+  message: 'Server is running on port 3000',
+  level: 'info',
+  label: 'winston custom format',
+  timestamp: 'Jun-24-2024 20:52:28'
+}
+{
+  message: 'Server is running on port 3000',
+  level: 'info',
+  label: 'winston custom format',
+  timestamp: 'Jun-24-2024 20:52:50'
+}
+{
+  message: 'Server is running on port 3000',
+  level: 'info',
+  label: 'winston custom format',
+  timestamp: 'Jun-24-2024 20:53:00'
+}
+{
+  message: 'Server is running on port 3000',
+  level: 'info',
+  label: 'winston custom format',
+  timestamp: 'Jun-24-2024 20:53:15'
+}
+{
+  message: 'Server is running on port 3000',
+  level: 'info',
+  label: 'winston custom format',
+  timestamp: 'Jun-24-2024 21:25:35'
+}
+{
+  message: 'Server is running on port 3000',
+  level: 'info',
+  label: 'winston custom format',
+  timestamp: 'Jun-24-2024 21:35:47'
+}
+{
+  message: 'Server is running on port 3000',
+  level: 'info',
+  label: 'winston custom format',
+  timestamp: 'Jun-24-2024 21:36:15'
+}
+{
+  message: 'Server is running on port 3000',
+  level: 'info',
+  label: 'winston custom format',
+  timestamp: 'Jun-24-2024 21:38:31'
+}
+{
+  message: 'Server is running on port 3000',
+  level: 'info',
+  label: 'winston custom format',
+  timestamp: 'Jun-24-2024 21:40:01'
+}
+{
+  message: 'Server is running on port 3000',
+  level: 'info',
+  label: 'winston custom format',
+  timestamp: 'Jun-24-2024 21:42:42'
+}
