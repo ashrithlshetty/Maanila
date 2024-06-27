@@ -3,11 +3,11 @@ const Stores = require("../models/store");
 
 module.exports = {
     getStores: async (req, res) => {
-        const page = parseInt(req.query.page) || 1; // Current page number, defaulting to 1 if not provided
-        const limit = parseInt(req.query.limit) || 10; // Number of documents per page, defaulting to 10 if not provided
-
+        console.log(req.query);
+        const page = parseInt(req.query.pageNum) || 1;
+        const limit = parseInt(req.query.limit) || 10;
         try {
-            const count = await Stores.countDocuments(); // Total count of documents in the collection
+            const count = await Stores.countDocuments();
 
             const stores = await Stores.find()
                 .skip((page - 1) * limit)
