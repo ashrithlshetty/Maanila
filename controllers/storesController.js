@@ -3,8 +3,27 @@ const Stores = require("../models/store");
 
 module.exports = {
     getStores: async (req, res) => {
-        const stores = await Stores.find();
-        res.status(200).json(stores);
+        const page = parseInt(req.query.page) || 1; // Current page number, defaulting to 1 if not provided
+        const limit = parseInt(req.query.limit) || 10; // Number of documents per page, defaulting to 10 if not provided
+
+        try {
+            const count = await Stores.countDocuments(); // Total count of documents in the collection
+
+            const stores = await Stores.find()
+                .skip((page - 1) * limit)
+                .limit(limit);
+
+            res.status(200).json(stores);
+
+            //   res.status(200).json({
+            //     totalItems: count,
+            //     totalPages: Math.ceil(count / limit),
+            //     currentPage: page,
+            //     stores
+            //   });
+        } catch (err) {
+            res.status(500).json({ message: err.message });
+        }
     },
     getStoreById: async (req, res) => {
         console.log(req.params.id);
