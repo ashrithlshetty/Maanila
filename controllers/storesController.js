@@ -4,7 +4,7 @@ const Stores = require("../models/store");
 module.exports = {
     getStores: async (req, res) => {
         console.log(req.query);
-        const page = parseInt(req.query.pageNum) || 1;
+        const page = parseInt(req.query.page) || 1;
         const limit = parseInt(req.query.limit) || 10;
         try {
             const count = await Stores.countDocuments();
